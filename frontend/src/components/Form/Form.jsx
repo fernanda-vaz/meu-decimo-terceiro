@@ -25,12 +25,17 @@ const Form = ({ setDecimoTerceiro }) => {
     e.preventDefault()
 
     try {
-      const res = await axios.post('http://localhost:3000', {
-        salarioIntegral: parseFloat(valores.salarioIntegral.replace(',', '.')),
-        mesesTrabalhados: parseInt(valores.mesesTrabalhados, 10),
-        horaExtra: parseInt(valores.horaExtra, 10),
-        valorHoraExtra: parseFloat(valores.valorHoraExtra.replace(',', '.')),
-      })
+      const res = await axios.post(
+        'https://meudecimoterceiro-backend-g2e0fpfqhjdsgxeb.brazilsouth-01.azurewebsites.net',
+        {
+          salarioIntegral: parseFloat(
+            valores.salarioIntegral.replace(',', '.')
+          ),
+          mesesTrabalhados: parseInt(valores.mesesTrabalhados, 10),
+          horaExtra: parseInt(valores.horaExtra, 10),
+          valorHoraExtra: parseFloat(valores.valorHoraExtra.replace(',', '.')),
+        }
+      )
 
       setDecimoTerceiro(res.data.decimoTerceiro)
 
@@ -55,7 +60,12 @@ const Form = ({ setDecimoTerceiro }) => {
       <div className={styles.formContent}>
         <form onSubmit={handleSubmit}>
           <Box
-            sx={{ width: 300, maxWidth: '100%', display: 'flex', flexWrap: 'wrap' }}
+            sx={{
+              width: 300,
+              maxWidth: '100%',
+              display: 'flex',
+              flexWrap: 'wrap',
+            }}
             className={styles.formInput}
           >
             <TextField
@@ -68,8 +78,10 @@ const Form = ({ setDecimoTerceiro }) => {
               fullWidth
               slotProps={{
                 input: {
-                  startAdornment: <InputAdornment position='start'>R$ </InputAdornment>
-                }
+                  startAdornment: (
+                    <InputAdornment position='start'>R$ </InputAdornment>
+                  ),
+                },
               }}
             />
 
@@ -105,8 +117,10 @@ const Form = ({ setDecimoTerceiro }) => {
               fullWidth
               slotProps={{
                 input: {
-                  startAdornment: <InputAdornment position='start'>R$ </InputAdornment>
-                }
+                  startAdornment: (
+                    <InputAdornment position='start'>R$ </InputAdornment>
+                  ),
+                },
               }}
             />
           </Box>
